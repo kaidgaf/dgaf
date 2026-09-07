@@ -13,6 +13,8 @@ DGAF Studio is a private, dark editorial workspace for chat, image generation, a
 - Provider routing UI with a primary OpenRouter route and Together AI fallback for text, plus model surfaces for Flux and Wan-style media generation.
 - Community feed with image/video posts, visible creation prompts, prompt copy actions, likes, and send-bonus-credit interactions.
 - Persistent light/dark theme switching with a top-bar toggle and light-mode surface overrides.
+- Settings workspace with profile details, personalization context, credit balance, usage by project, and an admin foundation tab.
+- Curated Skills library that indexes selected MIT-licensed Claude Skills packages without vendoring the full repository into the client bundle.
 - Responsive behavior for smaller screens and toast feedback for placeholder flows.
 
 ### Phase 2 — Application logic
@@ -37,6 +39,14 @@ DGAF Studio is a private, dark editorial workspace for chat, image generation, a
 ## Provider strategy
 
 The interface intentionally keeps options visible rather than hard-coding one vendor. Text routing is represented by OpenRouter (primary) and Together AI (fallback). Media controls are vendor-neutral so Fal.ai and Replicate adapters can be added without changing the UI contract. API keys and server-side orchestration are not included in this frontend-only pass.
+
+## Skills integration decision
+
+The referenced [Claude Skills repository](https://github.com/alirezarezvani/claude-skills) is MIT-licensed and contains hundreds of self-contained `SKILL.md` packages plus optional scripts and references. DGAF should not clone the entire repository into the frontend: that would increase bundle size, create a large update surface, and expose capabilities users did not ask to activate. The current UI uses a curated registry with source paths and activation affordances. The recommended backend implementation is an allowlisted manifest that fetches only selected `SKILL.md` packages on demand, caches them server-side, records the pinned commit, and exposes only the normalized metadata/context needed by the prompt orchestrator.
+
+## Admin foundation decision
+
+The minimum viable admin control plane should cover four areas: users and roles, model/provider registry, the append-only credit/audit ledger, and operations health. Model records should include provider priority, capability flags, pricing, limits, and health. User records should support search, suspension, roles, and balance inspection. Every credit mutation, bonus transfer, refund, model change, and operator action should be auditable. This is represented in the Settings UI now and should become a protected server-backed surface in the next application phase.
 
 ## Local development
 
