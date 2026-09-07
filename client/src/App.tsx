@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 export default function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider defaultTheme="dark">
+      <ThemeProvider defaultTheme="dark" switchable>
         <TooltipProvider>
           <Toaster theme="dark" />
           <Home />

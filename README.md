@@ -11,6 +11,8 @@ DGAF Studio is a private, dark editorial workspace for chat, image generation, a
 - Image/video prompt builders with model, aspect ratio, negative prompt, generation, and recent library surfaces.
 - Credit balance display and usage estimate to establish the billing/ledger mental model.
 - Provider routing UI with a primary OpenRouter route and Together AI fallback for text, plus model surfaces for Flux and Wan-style media generation.
+- Community feed with image/video posts, visible creation prompts, prompt copy actions, likes, and send-bonus-credit interactions.
+- Persistent light/dark theme switching with a top-bar toggle and light-mode surface overrides.
 - Responsive behavior for smaller screens and toast feedback for placeholder flows.
 
 ### Phase 2 — Application logic
